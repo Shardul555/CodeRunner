@@ -8,6 +8,8 @@ import LanguageDropdown from './Components/LanguageDropdown';
 import { languageOptions } from './Constants/languageOptions';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const darkTheme = createTheme({
   palette: {
@@ -26,7 +28,7 @@ function App() {
     setLanguage(sl.target.value);
   };
 
-  const onChange = (action, data) => {
+  const onCodeChange = (action, data) => {
     switch (action) {
       case "code": {
         setCode(data);
@@ -52,14 +54,22 @@ function App() {
         <div>
           <Grid container spacing={2} className="Grid">
             <Grid item xs={12} lg={8}>
-              <CodeEditor />
+              <CodeEditor 
+              code={code}
+              onChange={onCodeChange}
+              language={language}
+              />
             </Grid>
-            <Grid item xs={6} lg={4}>
-              <CustomInput />
-              <Button variant="contained" color="secondary" onClick={() => {alert('clicked');}}>Compile and Run</Button>
-            </Grid>
-            <Grid item xs={6} lg={4}>
-              <CustomInput />
+            <Grid container alignItems="flex-start" xs={12} lg={4}>
+              <Grid container direction="column" xs={6} lg={12}>
+                <div>
+                  <CustomInput />
+                  <Button variant="contained" color="secondary" onClick={() => {alert('clicked');}}>Compile and Run</Button>
+                </div>
+              </Grid>
+              <Grid container direction='column' xs={6} lg={12}>
+                <CustomInput />
+              </Grid>
             </Grid>
           </Grid>
         </div>
