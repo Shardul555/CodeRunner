@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
-let windowColor = "green",
+const windowColor = "#6a717e",
     textColor = "#d9dbdf";
 
 const useStyles = makeStyles({
   root: {
-      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    backgroundColor:"#1e1e1e",
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "dark" + windowColor,
           borderWidth: 3,
     },
@@ -42,28 +43,26 @@ const useStyles = makeStyles({
   }
 });
 
-const OutputWindow = ({ outputData }) => {
-
-    let statusId = outputData?.status;
-    if (statusId != 3) {
-        windowColor = "red";
-    }
-
+const InputWindow = ({ inputData, onChange }) => {
     const classes = useStyles();
+
+    const handleInputChange = (value) => {
+        onChange(value);
+    }
 
     return (
         <div className="borders">
-            <h3 className="no-decor">Output</h3>
+            <h3 className="no-decor">Custom Input</h3>
             <TextField
               id="filled-multiline-static"
               multiline
               rows={10}
-              placeholder="Code Output"
+              placeholder="Provide custom input"
+              onChange={handleInputChange}
               variant="outlined"
               fullWidth
               className={classes.root}
               InputProps={{
-                readOnly: true,
                 classes: {input: classes.resize}
               }}
             />
@@ -71,4 +70,4 @@ const OutputWindow = ({ outputData }) => {
     );
 };
 
-export default OutputWindow;
+export default InputWindow;

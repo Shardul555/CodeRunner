@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import OutputWindow from './Components/OutputWindow';
+import InputWindow from './Components/InputWindow';
 
 const darkTheme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ const darkTheme = createTheme({
 function App() {
   const [language, setLanguage] = useState(languageOptions[0].name);
   const [code, setCode] = useState("");
+  const [customInput, setCustomInput] = useState("");
   const [processing, setProcessing] = useState(false);
 
   const onLanguageSelectChange = (sl) => {
@@ -41,6 +43,11 @@ function App() {
       }
     }
   };
+
+  const onCustomInput = (value) => {
+    setCustomInput(value.target.value);
+    console.log(customInput);
+  }
 
   const handleCompile = () => {
     setProcessing(true);
@@ -95,7 +102,10 @@ function App() {
             <Grid container alignItems="flex-start" xs={12} lg={4}>
               <Grid container direction="column" xs={6} lg={12}>
                 <div>
-                  <CustomInput />
+                  <InputWindow 
+                    inputData={customInput}
+                    onChange={onCustomInput}
+                  />
                   <Button variant="contained" color="secondary" onClick={handleCompile}>Compile and Run</Button>
                 </div>
               </Grid>
@@ -109,14 +119,5 @@ function App() {
     </ThemeProvider>
   );
 }
-
-function CustomInput({ customInput }) {
-  return (
-    <div>
-      <h3>Custom Input</h3>
-    </div>
-  );
-}
-
 
 export default App;

@@ -2,6 +2,7 @@
     text-align: center;
     background-color: #6a717e;
     overflow-x: hidden;
+    padding: 1em;
 }
 
 .App-logo {
@@ -60,6 +61,10 @@
 .no-decor {
     margin-bottom: 0;
     /* padding: 0; */
+}
+
+.borders {
+    margin: 1em;
 }
 
 .colorBox1 {
