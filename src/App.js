@@ -10,6 +10,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 const darkTheme = createTheme({
   palette: {
@@ -18,10 +19,9 @@ const darkTheme = createTheme({
 });
 
 function App() {
-
   const [language, setLanguage] = useState(languageOptions[0].name);
-
   const [code, setCode] = useState("");
+  const [processing, setProcessing] = useState(false);
 
   const onLanguageSelectChange = (sl) => {
     console.log("selected Language: ", sl.target.value);
@@ -39,6 +39,37 @@ function App() {
         console.warn("case not handled!", action, data);
       }
     }
+  };
+
+  const handleCompile = () => {
+    setProcessing(true);
+
+    const formData = {
+      language: language,
+      sourceCode: code,
+      // stdin: customInput
+    }
+
+    const options = {
+      method: "POST",
+      url: process.env.REACT_APP_BACKEND_URL,
+      headers: {
+        "content-type": "application/json",
+        "Content-Type": "application/json",
+      },
+      data: formData,
+      crossDomain: true,
+    }
+
+    axios
+    .request(options)
+    .then((response) => {
+      console.log("data", response.data);
+    })
+    .catch((err) => {
+      setProcessing(false);
+      console.log("compile request error ", err);
+    });
   };
 
   return (
@@ -64,7 +95,7 @@ function App() {
               <Grid container direction="column" xs={6} lg={12}>
                 <div>
                   <CustomInput />
-                  <Button variant="contained" color="secondary" onClick={() => {alert('clicked');}}>Compile and Run</Button>
+                  <Button variant="contained" color="secondary" onClick={handleCompile}>Compile and Run</Button>
                 </div>
               </Grid>
               <Grid container direction='column' xs={6} lg={12}>
