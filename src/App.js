@@ -22,8 +22,8 @@ function App() {
   const [code, setCode] = useState("");
 
   const onLanguageSelectChange = (sl) => {
-    console.log("selected Language: ", sl);
-    setLanguage(sl);
+    console.log("selected Language: ", sl.target.value);
+    setLanguage(sl.target.value);
   };
 
   const onChange = (action, data) => {
