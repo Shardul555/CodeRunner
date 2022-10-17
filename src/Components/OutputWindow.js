@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -59,6 +59,7 @@ const OutputWindow = ({ outputData }) => {
               multiline
               rows={10}
               placeholder="Code Output"
+              value={outputData}
               variant="outlined"
               fullWidth
               className={classes.root}

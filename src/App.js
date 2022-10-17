@@ -24,6 +24,7 @@ function App() {
   const [language, setLanguage] = useState(languageOptions[0].name);
   const [code, setCode] = useState("");
   const [customInput, setCustomInput] = useState("");
+  const [outputData, setOutputData] = useState("");
   const [processing, setProcessing] = useState(false);
 
   const onLanguageSelectChange = (sl) => {
@@ -55,7 +56,7 @@ function App() {
     const formData = {
       language: language,
       sourceCode: code,
-      // stdin: customInput
+      stdin: customInput
     }
 
     const options = {
@@ -72,7 +73,9 @@ function App() {
     axios
     .request(options)
     .then((response) => {
-      console.log("data", response.data);
+      setProcessing(false);
+      setOutputData(response.data);
+      console.log("code output", response.data);
     })
     .catch((err) => {
       setProcessing(false);
@@ -106,11 +109,14 @@ function App() {
                     inputData={customInput}
                     onChange={onCustomInput}
                   />
-                  <Button variant="contained" color="secondary" onClick={handleCompile}>Compile and Run</Button>
+                  <Button variant="contained" color="secondary" onClick={handleCompile}>{ processing ? "Running.." : "Compile and Run"}</Button>
                 </div>
               </Grid>
               <Grid container direction='column' xs={6} lg={12}>
-                <OutputWindow />
+                <OutputWindow
+                  outputData={outputData}
+                  onChange={setOutputData}
+                />
               </Grid>
             </Grid>
           </Grid>
