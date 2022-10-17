@@ -1,6 +1,6 @@
 .App {
     text-align: center;
-    background-color: #282c34;
+    background-color: #6a717e;
     overflow-x: hidden;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    /* background-color: #282c34; */
     /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
@@ -40,7 +40,21 @@
 }
 
 .Grid {
-    padding: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.languageDropDown {
+    color: white;
+    border-color: white;
+    float: left;
+    margin-left: 2em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.language-text {
+    color: rgb(207, 204, 204) !important;
 }
 
 .colorBox1 {
