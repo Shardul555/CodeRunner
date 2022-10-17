@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
+import OutputWindow from './Components/OutputWindow';
 
 const darkTheme = createTheme({
   palette: {
@@ -99,7 +100,7 @@ function App() {
                 </div>
               </Grid>
               <Grid container direction='column' xs={6} lg={12}>
-                <CustomInput />
+                <OutputWindow />
               </Grid>
             </Grid>
           </Grid>
@@ -117,12 +118,5 @@ function CustomInput({ customInput }) {
   );
 }
 
-function OutputWindow({ output }) {
-  return (
-    <div>
-      <h3>Output</h3>
-    </div>
-  );
-}
 
 export default App;
