@@ -19,7 +19,7 @@ const darkTheme = createTheme({
 
 function App() {
 
-  const [language, setLanguage] = useState(languageOptions[0]);
+  const [language, setLanguage] = useState(languageOptions[0].name);
 
   const [code, setCode] = useState("");
 

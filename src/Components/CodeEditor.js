@@ -3,7 +3,7 @@ import Editor from "@monaco-editor/react";
 
 const CodeEditor = ({ onChange, language, code }) => {
     const defaultTheme = "vs-dark";
-    const { value, setValue } = useState(code || "");
+    const [ value, setValue ] = useState(code || "");
 
     const handleEditorChange = (value) => {
         setValue(value);
