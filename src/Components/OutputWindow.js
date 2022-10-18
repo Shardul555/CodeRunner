@@ -37,17 +37,14 @@ const useStyles = makeStyles({
     }
   },
   resize: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold"
   }
 });
 
-const OutputWindow = ({ outputData }) => {
+const OutputWindow = ({ outputData, outputWindowColor }) => {
 
-    let statusId = outputData?.status;
-    if (statusId != 3) {
-        windowColor = "red";
-    }
+    windowColor = outputWindowColor ? outputWindowColor : windowColor;
 
     const classes = useStyles();
 
